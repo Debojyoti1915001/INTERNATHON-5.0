@@ -171,7 +171,6 @@ module.exports.logout_get = async (req, res) => {
 } 
 
 module.exports.groupCreate_get = async (req, res) => {
-    const user = await req.user.populate('group').execPopulate()
     res.send(req.user)
 }
 module.exports.groupCreate_post = async (req, res) => {
@@ -192,10 +191,17 @@ module.exports.groupCreate_post = async (req, res) => {
         
         // console.log(doc);
     });
-    console.log(req.user)
-    console.log(newGroup)
     res.send('save')
     }catch(err){
         res.send(err)
     }
+}
+
+module.exports.groupInfo_get = async(req, res) => {
+    //617c4cc6f9150521404c9d09
+    
+}
+module.exports.userGroups_get = async(req, res) => {
+    const allGroups = await req.user.populate('group').execPopulate()
+    res.send(allGroups.group)
 }
