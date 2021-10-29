@@ -4,7 +4,7 @@ const Contact = require('../models/Contact');
 const { contactMail } = require('../config/nodemailer');
 //Route for homepage
 router.get('/', (req, res) => {
-    res.send('Home Page')
+    res.render('./index')
 });
 
 router.post('/contact',async(req,res)=>{
