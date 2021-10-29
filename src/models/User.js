@@ -42,6 +42,11 @@ const userSchema = mongoose.Schema(
             trim: true,
             validate: [utilities.phoneValidator, 'Phone number is invalid'],
         },
+        group:[{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Group'
+
+        }],
         
         passwordResetToken: String,
         passwordResetExpires: Date,

@@ -12,8 +12,8 @@ router.post('/login', authController.login_post)
 router.get('/logout', requireAuth, authController.logout_get)
 
 //group
-router.get('/group', requireAuth, authController.group_get)
-router.post('/group', requireAuth, authController.group_post)
+router.get('/group', requireAuth, authController.groupCreate_get)
+router.post('/group', requireAuth, authController.groupCreate_post)
 
 
 

@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Group = require('../models/group')
 const jwt = require('jsonwebtoken')
 const { signupMail } = require('../config/nodemailer')
 const path = require('path')
@@ -169,9 +170,32 @@ module.exports.logout_get = async (req, res) => {
     res.redirect('/')
 } 
 
-module.exports.group_get = async (req, res) => {
+module.exports.groupCreate_get = async (req, res) => {
+    const user = await req.user.populate('group').execPopulate()
     res.send(req.user)
 }
-module.exports.group_post = async (req, res) => {
-    
+module.exports.groupCreate_post = async (req, res) => {
+    try{
+        const {name}=req.body
+
+    const userId=[req.user._id]
+    const newGroup=new Group({ name,user:userId})
+    let saveGroup = await newGroup.save()
+    const userGroups=req.user.group
+    userGroups.push(saveGroup._id)
+    await User.findOneAndUpdate({_id: req.user._id}, {$set:{group:userGroups}}, {new: true}, (err, doc) => {
+        if (err) {
+            // console.log("Something wrong when updating data!");
+            req.flash("error_msg", "Something wrong when updating data!")
+            res.redirect('/')
+        }
+        
+        // console.log(doc);
+    });
+    console.log(req.user)
+    console.log(newGroup)
+    res.send('save')
+    }catch(err){
+        res.send(err)
+    }
 }

@@ -13,7 +13,7 @@ const requireAuth = (req, res, next) => {
             if (err) {
                 console.log(err.message)
 
-                res.redirect('/user/login')
+                res.redirect('/')
             } else {
                 let user = await User.findById(decodedToken.id)
                 // if null then redirect to signup
@@ -21,7 +21,7 @@ const requireAuth = (req, res, next) => {
                 {
                     req.flash("error_msg", "You do not have an account yet, kindly sign up for one"); 
                     res.clearCookie('jwt')
-                    res.redirect("/user/signup"); 
+                    res.redirect("/"); 
                     return; 
                 }
                 //else to profile
@@ -32,11 +32,11 @@ const requireAuth = (req, res, next) => {
             }
         })
     } else {
-        res.redirect('/user/login')
+        res.redirect('/')
     }
 }
 catch(error){
-    res.redirect("/user/login");
+    res.redirect("/");
 }
 }
 
@@ -46,7 +46,7 @@ const redirectIfLoggedIn = (req, res, next) => {
     if (token)
     {
         req.flash("error_msg", "You are already logged in.")
-        res.redirect("/user/profile")
+        res.redirect("/group")
     }
     else
     {
