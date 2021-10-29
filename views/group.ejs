@@ -31,11 +31,11 @@
         <div class="modal-dialog modal-login">
             <div class="modal-content">
                 <div class="modal-header">				
-                    <h4 class="modal-title">Member Login</h4>
+                    <h4 class="modal-title">Enter Group Name</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="/user/login" method="POST">
+                    <form action="/user/group" method="POST">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
                             <input type="text" name="name"class="form-control" placeholder="name" required="required">
@@ -45,9 +45,6 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <a href="#">Forgot Password?</a>
-                </div>
             </div>
         </div>
     </div>   
@@ -55,7 +52,10 @@
        <div class="container">
              <h2> Group Name</h2>
        </div>
-        <h4><a href="">School Friends</a></h4>
+        <h4><a href="">Groups I am In</a></h4>
+        <%for(var group of allGroups){%>
+            <h3><a href="/user/groupInfo/<%=group._id%>"><%=group.name%></a></h3>
+        <%}%>
    </div>
    <div>
        <a href="#myModalLogin" data-toggle="modal" style=" margin-top: 5px;">Create Group
