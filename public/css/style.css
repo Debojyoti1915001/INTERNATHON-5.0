@@ -47,7 +47,11 @@ body {
   font-family: "OpenSans-Regular";
   background:linear-gradient(315deg, rgb(217, 228, 245) 0%, rgb(245, 227, 230) 74%);
 }
-
+.logout{
+  border:#000 solid 1px;
+  border-radius: 0;
+  color: #000;
+}
 @media (min-width: 1200px) {
   .container {
     max-width: 1240px;

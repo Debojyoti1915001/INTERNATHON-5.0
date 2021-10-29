@@ -18,14 +18,14 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="/examples/actions/confirmation.php" method="post">
+                    <form action="/user/login" method="POST">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
-                            <input type="text" class="form-control" placeholder="Username" required="required">
+                            <input type="email" name="email"class="form-control" placeholder="Email" required="required">
                         </div>
                         <div class="form-group">
                             <i class="fa fa-lock"></i>
-                            <input type="password" class="form-control" placeholder="Password" required="required">					
+                            <input type="password"name="password" class="form-control" placeholder="Password" required="required">					
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-block btn-lg" value="Login">
@@ -39,16 +39,18 @@
         </div>
     </div>     
     <div id="myModalSignup" class="modal fade">
+        <!-- start -->
         <div class="modal-dialog modal-login">
             <div class="modal-content">
                 <div class="modal-header">				
-                    <h4 class="modal-title">SignUp Login</h4>
+                    <h4 class="modal-title">SignUp</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
+                    <form action="/user/signup" method="POST">
                     <div class="form-group">
                         <div class="row">
-                            <div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
+                            <div class="col"><input type="text" class="form-control" name="name" placeholder="Name" required="required"></div>
                         </div>        	
                     </div>
                     <div class="form-group">
@@ -58,7 +60,7 @@
                         <input type="password" class="form-control" name="password" placeholder="Password" required="required">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required="required">
+                        <input type="password" class="form-control" name="confirmPwd" placeholder="Confirm Password" required="required">
                     </div>        
                     <div class="form-group">
                         <label class="form-check-label"><input type="checkbox" required="required"> I accept the <a href="#">Terms of Use</a> &amp; <a href="#">Privacy Policy</a></label>
@@ -85,11 +87,15 @@
                 <li class="nav-item"><a class="nav-link" href="#news">Group</a></li>
                 <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <% if(c===false){%>
+            <form class="form-inline my-2 my-lg-0" >
                 <a class="btn btn-outline-dark my-2 my-sm-0 mr-3 text-uppercase trigger-btn"
                 href="#myModalLogin" data-toggle="modal">login</a> 
                 <a class="btn btn-info my-2 my-sm-0 text-uppercase" href="#myModalSignup" data-toggle="modal">sign up</a>
             </form>
+            <%}else{%>
+                <a class="btn logout my-2 my-sm-0 text-uppercase" href="/user/logout">LOGOUT</a>
+            <%}%>
         </div>
     </div>
 </nav>
@@ -99,7 +105,11 @@
             <div class="col-md-6">
                 <h1 style=" margin-bottom: 51px;"> Now split and track your <span>BILLS</span> without any extra load</h1>
                 <!--<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. In rhoncus turpis nisl. </p>-->
-                <a href="#" style=" margin-top: 5px;">Create Group<i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                <% if(c===true){%>
+                <a href="/user/group" style=" margin-top: 5px;">Create Group<i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                <% }else{%>
+                    <a href="#myModalLogin" data-toggle="modal" style=" margin-top: 5px;">Create Group<i class="fa fa-angle-right" aria-hidden="true"></i></a></div>
+                <%}%>
             <div class="col-md-6">
                 <div class="card"><img class="card-img-top img-fluid" src="images/banner2.png" alt=""></div>
             </div>

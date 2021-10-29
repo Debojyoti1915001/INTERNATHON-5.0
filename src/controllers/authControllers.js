@@ -23,7 +23,7 @@ module.exports.login_get = (req, res) => {
 
 module.exports.signup_post = async (req, res) => {
     const { name, email, password, confirmPwd } = req.body
-    // console.log("in sign up route",req.body);
+     console.log("in sign up route",req.body);
     if (password != confirmPwd) {
         req.flash('error_msg', 'Passwords do not match. Try again')
         res.status(400).redirect('/')
@@ -110,8 +110,8 @@ module.exports.emailVerify_get = async (req, res) => {
 
 module.exports.login_post = async (req, res) => {
     const { email, password } = req.body
-    // console.log('in Login route')
-    //  console.log('req.body',req.body)
+     console.log('in Login route')
+     console.log('req.body',req.body)
     try {
 
         const user = await User.login(email, password)
@@ -169,4 +169,9 @@ module.exports.logout_get = async (req, res) => {
     res.redirect('/')
 } 
 
-
+module.exports.group_get = async (req, res) => {
+    res.send(req.user)
+}
+module.exports.group_post = async (req, res) => {
+    
+}
