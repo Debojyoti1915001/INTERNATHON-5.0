@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="owl-carousel/assets/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="css/group.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <title>Split Your Bill</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
+        <div class="container"><a class="navbar-brand">SplitYourBill</a>
+            <button class="navbar-toggler" data-target="#my-nav" onclick="myFunction(this)" data-toggle="collapse"><span
+                    class="bar1"></span> <span class="bar2"></span> <span class="bar3"></span></button>
+            <div id="my-nav" class="collapse navbar-collapse ml-4">
+                <ul class="navbar-nav mr-auto ml-4">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#news">Group</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+                    <a class="btn logout my-2 my-sm-0 text-uppercase" href="/user/logout">LOGOUT</a>
+            </div>
+        </div>
+    </nav>
+    <div id="myModalLogin" class="modal fade">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">				
+                    <h4 class="modal-title">Member Login</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/user/login" method="POST">
+                        <div class="form-group">
+                            <i class="fa fa-user"></i>
+                            <input type="text" name="name"class="form-control" placeholder="name" required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="submit">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <a href="#">Forgot Password?</a>
+                </div>
+            </div>
+        </div>
+    </div>   
+    <div class="allgroup">
+       <div class="container">
+             <h2> Group Name</h2>
+       </div>
+        <h4><a href="">School Friends</a></h4>
+   </div>
+   <div>
+       <a href="#myModalLogin" data-toggle="modal" style=" margin-top: 5px;">Create Group
+        <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </div>
+
+
+<footer class="container-fluid" id="gtco-footer">
+    <div class="container">
+        <div class="row">
+                    <div class="col-12">
+                        <p>&copy; 2021 INTERNATHON. All Rights Reserved. Made by 404 FORCES</a>.</p>
+                    </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/jquery-3.3.1.slim.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- owl carousel js-->
+<script src="owl-carousel/owl.carousel.min.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>

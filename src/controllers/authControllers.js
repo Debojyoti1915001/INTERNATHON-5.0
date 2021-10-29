@@ -171,8 +171,8 @@ module.exports.logout_get = async (req, res) => {
 } 
 
 module.exports.groupCreate_get = async (req, res) => {
-    const user = await req.user.populate('group').execPopulate()
-    res.send(req.user)
+    //const user = await req.user.populate('group').execPopulate()
+    res.render('./group')
 }
 module.exports.groupCreate_post = async (req, res) => {
     try{
