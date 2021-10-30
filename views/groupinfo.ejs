@@ -51,9 +51,35 @@
             </div>
         </div>
     </div>   
-<div class="main-group">
-    <div class="allgroup">
-       <div class="container">
+<div class="mastergroup col-12">    
+    <div class="container">
+        <div class="row">
+        <div class="main-group col-6">
+        <div class="allgroup">
+            <div class="container">
+              <h2> <%=groupInfo.name%></h2>
+       </div>
+            <%for(var ele of relation){%>
+                <h3 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
+                    padding:7px;
+                    border-radius: 20px;"><%=ele.user.name%>:Amount:<%=ele.amount%></a></h3>
+            <%}%>
+        <div  class="createButton" style="padding-bottom: 30px;">
+        <a href="#myModalLogin" data-toggle="modal" style=" 
+        margin-top: 5px; 
+        border:#000 solid 1px;
+        border-radius: 0;
+        color: #000;
+        font-size: 16px;
+        padding: 5px;
+        ">Add Member
+         <i class="fa fa-angle-right" aria-hidden="true" style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+            </div>
+        </div>
+    </div>
+    <div class="main-group col-6">
+        <div class="allgroup">
+        <div class="container">
              <h2> <%=groupInfo.name%></h2>
        </div>
             <%for(var ele of relation){%>
@@ -74,7 +100,9 @@
    </div>
     </div>
 </div>
-    
+</div>  
+</div>
+</div>  
     
 
 
