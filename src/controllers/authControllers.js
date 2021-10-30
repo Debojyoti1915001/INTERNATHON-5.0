@@ -206,16 +206,25 @@ module.exports.groupInfo_get = async(req, res) => {
     //617c4cc6f9150521404c9d09
     try{
         const id=req.params.id
-        // const groupInfo=await Group.findOne({_id:id})
+        const groupInfo=await Group.findOne({_id:id})
         // const group = await groupInfo.populate('user').execPopulate()
-        const relation=await GU.find({group:id})
+        const rel=await GU.find({group:id})
         //res.send(relation)
+        // console.log(rel)
+        var relation=[]
+        for(var i=0;i<rel.length;i++){
+            var r=await rel[i].populate('user').execPopulate()
+            relation.push(r)
+        }
+        console.log(relation)
         res.render('./groupinfo',
         {
-            id
+            relation,
+            id,
+            groupInfo
         })
     }catch(err){
-        res.send(err)
+        res.send('err')
     }
 }
 module.exports.groupInfo_post = async(req, res) => {

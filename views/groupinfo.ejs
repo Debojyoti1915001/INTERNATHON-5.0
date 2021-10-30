@@ -54,11 +54,13 @@
 <div class="main-group">
     <div class="allgroup">
        <div class="container">
-             <h2> Group Member Name</h2>
+             <h2> <%=groupInfo.name%></h2>
        </div>
-            <h3 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
-                padding:7px;
-                border-radius: 20px;"></a></h3>
+            <%for(var ele of relation){%>
+                <h3 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
+                    padding:7px;
+                    border-radius: 20px;"><%=ele.user.name%>:Amount:<%=ele.amount%></a></h3>
+            <%}%>
     <div  class="createButton" style="padding-bottom: 30px;">
         <a href="#myModalLogin" data-toggle="modal" style=" 
         margin-top: 5px; 
