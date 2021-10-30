@@ -12,7 +12,9 @@ router.get('/', (req, res) => {
         c
     })
 });
-
+router.get('/about', (req, res) => {
+    res.render('./about')
+});
 router.post('/contact',async(req,res)=>{
     try{
         const { name, email, subject, message } = req.body;
