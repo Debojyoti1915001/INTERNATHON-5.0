@@ -232,6 +232,7 @@ module.exports.groupInfo_post = async(req, res) => {
     try{
         const id=req.params.id
         const {email,amount}=req.body
+        console.log(amount)
         const user=await User.findOne({email})
         if(user.length===0){
             res.send('errors')
