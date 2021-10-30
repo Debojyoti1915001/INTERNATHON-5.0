@@ -264,7 +264,7 @@ module.exports.groupInfoEqual_post = async(req, res) =>{
         const id=req.params.id
         const group=await Group.findOne({_id:id})
         console.log(group)
-    var len=group.user
+    var len=group.user.length
     var eachHead=amount/len
     console.log(len)
     await Group.findOneAndUpdate({_id: id}, {$set:{amount:eachHead}}, {new: true}, (err, doc) => {
