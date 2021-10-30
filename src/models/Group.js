@@ -11,7 +11,8 @@ const group = mongoose.Schema({
 
     }],
     amount:{
-        type:Number
+        type:Number,
+        default:0
     }
 })
 

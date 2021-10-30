@@ -12,10 +12,11 @@ router.post('/login', authController.login_post)
 router.get('/logout', requireAuth, authController.logout_get)
 
 //group
+
 router.get('/group', requireAuth, authController.groupCreate_get)
 router.post('/group', requireAuth, authController.groupCreate_post)
 
-
+router.post('/groupInfoEqual/:id', requireAuth, authController.groupInfoEqual_post)
 router.get('/groupInfo/:id', requireAuth, authController.groupInfo_get)
 router.post('/groupInfo/:id', requireAuth, authController.groupInfo_post)//group id
 module.exports = router

@@ -216,7 +216,7 @@ module.exports.groupInfo_get = async(req, res) => {
             var r=await rel[i].populate('user').execPopulate()
             relation.push(r)
         }
-        console.log(relation)
+        // console.log(relation)
         res.render('./groupinfo',
         {
             relation,
@@ -232,17 +232,51 @@ module.exports.groupInfo_post = async(req, res) => {
     try{
         const id=req.params.id
         const {email,amount}=req.body
-        console.log(amount)
+        console.log(email,amount)
+        // console.log(amount)
         const user=await User.findOne({email})
-        if(user.length===0){
-            res.send('errors')
-        }
+        const group=await Group.findOne({_id:id})
+        const users=group.user
+        users.push(user._id)
+        await Group.findOneAndUpdate({_id: id}, {$set:{user:users}}, {new: true}, (err, doc) => {
+            if (err) {
+                // console.log("Something wrong when updating data!");
+                req.flash("error_msg", "Something wrong when updating data!")
+                res.redirect('/')
+            }
+            
+            // console.log(doc);
+        });
         const userId=user._id
         const newRelation=new GU({user:userId,group:id,amount})
         const relation=await newRelation.save()
         const relationSend=await relation.populate('user').execPopulate()
         // res.send(relation)
         res.redirect(`/user/groupInfo/${id}`)
+    }catch(err){
+        res.send(err)
+    }
+}
+
+module.exports.groupInfoEqual_post = async(req, res) =>{
+    try{
+        const {amount}=req.body
+        const id=req.params.id
+        const group=await Group.findOne({_id:id})
+        console.log(group)
+    var len=group.user
+    var eachHead=amount/len
+    console.log(len)
+    await Group.findOneAndUpdate({_id: id}, {$set:{amount:eachHead}}, {new: true}, (err, doc) => {
+        if (err) {
+            // console.log("Something wrong when updating data!");
+            req.flash("error_msg", "Something wrong when updating data!")
+            res.send(err)
+        }
+        
+        // console.log(doc);
+    });
+     res.redirect(`/user/groupInfo/${id}`) 
     }catch(err){
         res.send(err)
     }
