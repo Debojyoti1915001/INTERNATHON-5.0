@@ -19,4 +19,8 @@ router.post('/group', requireAuth, authController.groupCreate_post)
 router.post('/groupInfoEqual/:id', requireAuth, authController.groupInfoEqual_post)
 router.get('/groupInfo/:id', requireAuth, authController.groupInfo_get)
 router.post('/groupInfo/:id', requireAuth, authController.groupInfo_post)//group id
+//edit
+//remainder
+router.get('/reminder/:amount/:email/:id', requireAuth, authController.remainder_get)
+
 module.exports = router

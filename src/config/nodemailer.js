@@ -198,15 +198,11 @@ const passwordMail = (user,TOKEN,host,protocol)=>{
 
 
 
-const nomineeMail = (ticket,nominee,user, host, protocol) => {
+const reminderMail = (group,email,amount, host, protocol) => {
     const maxAge = 3 * 60 * 60
-    const patient_name = user.name; 
-    const TOKEN = jwt.sign({ id: ticket._id }, process.env.JWT_SECRET, {
-        expiresIn: maxAge,
-    })
-    const PORT = process.env.PORT || 3000
-    const link = `${protocol}://${host}:${PORT}/hospital/verifyNominee/${ticket._id}?tkn=${TOKEN}`
-
+    const Admin = group.name; 
+    
+    
     var transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
         port: 465,
@@ -219,12 +215,9 @@ const nomineeMail = (ticket,nominee,user, host, protocol) => {
     })
     var mailOptions = {
         from: process.env.NODEMAILER_EMAIL,
-        to: `${nominee.email}`,
-        subject: 'Give access to hospital',
-        html:
-            'Hello,<br> You are nominee of ' + patient_name +'.<br>Kindly grant access to patient data. <br> <a href=' +
-            link +
-            '>Click here </a>',
+        to: `${email}`,
+        subject: 'Requested To Pay Your Due Money ',
+        html:`Hello,<br> You are Requested to pay<br>  &#8377; ${amount}<br>-<strong>${Admin}</strong>`,
     }
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
@@ -235,13 +228,11 @@ const nomineeMail = (ticket,nominee,user, host, protocol) => {
     })
 }
 
-
-
 module.exports = {
     signupMail,
     contactMail, 
     hospitalSignupMail,
     relationMail,
     passwordMail, 
-    nomineeMail
+    reminderMail
 }

@@ -2,7 +2,7 @@ const User = require('../models/User')
 const Group = require('../models/Group')
 const GU = require('../models/GU')
 const jwt = require('jsonwebtoken')
-const { signupMail } = require('../config/nodemailer')
+const { signupMail,reminderMail } = require('../config/nodemailer')
 const path = require('path')
 const { handleErrors,generateShortId } = require('../utilities/Utilities'); 
 const crypto = require('crypto')
@@ -292,6 +292,25 @@ module.exports.groupInfoEqual_post = async(req, res) =>{
         // console.log(doc);
     });
      res.redirect(`/user/groupInfo/${id}`) 
+    }catch(err){
+        res.send(err)
+    }
+}
+
+module.exports.edit=async(req,res)=>{
+
+}
+module.exports.remainder_get=async(req,res)=>{
+    try{
+        const amount=req.params.amount
+        const email=req.params.email
+        const id=req.params.id
+        const group=await Group.findOne({_id:id})
+        const user=req.user
+        reminderMail(group,email,amount,req.hostname,req.protocol)
+        console.log(amount,email,id)
+
+        res.redirect(`/user/groupInfo/${id}`)
     }catch(err){
         res.send(err)
     }
