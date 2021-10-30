@@ -234,6 +234,7 @@ module.exports.groupInfo_post = async(req, res) => {
         const {email,amount}=req.body
         console.log(email,amount)
         // console.log(amount)
+       
         const user=await User.findOne({email})
         const group=await Group.findOne({_id:id})
         const users=group.user
@@ -251,6 +252,19 @@ module.exports.groupInfo_post = async(req, res) => {
         const newRelation=new GU({user:userId,group:id,amount})
         const relation=await newRelation.save()
         const relationSend=await relation.populate('user').execPopulate()
+        if(amount===undefined){
+            var len=group.user.length-1
+            var eachHead=(group.amount)/len
+            eachHead=eachHead.toFixed(2)
+            console.log(len)
+            await Group.findOneAndUpdate({_id: id}, {$set:{amount:eachHead}}, {new: true}, (err, doc) => {
+                if (err) {
+                    // console.log("Something wrong when updating data!");
+                    req.flash("error_msg", "Something wrong when updating data!")
+                    res.send(err)
+                }  
+            }); 
+        }
         // res.send(relation)
         res.redirect(`/user/groupInfo/${id}`)
     }catch(err){
@@ -266,6 +280,7 @@ module.exports.groupInfoEqual_post = async(req, res) =>{
         console.log(group)
     var len=group.user.length-1
     var eachHead=amount/len
+    eachHead=eachHead.toFixed(2)
     console.log(len)
     await Group.findOneAndUpdate({_id: id}, {$set:{amount:eachHead}}, {new: true}, (err, doc) => {
         if (err) {
