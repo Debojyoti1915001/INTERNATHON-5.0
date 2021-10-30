@@ -240,8 +240,8 @@ module.exports.groupInfo_post = async(req, res) => {
         const newRelation=new GU({user:userId,group:id,amount})
         const relation=await newRelation.save()
         const relationSend=await relation.populate('user').execPopulate()
-        res.send(relation)
-        // res.redirect(`/user/groupInfo/${id}`)
+        // res.send(relation)
+        res.redirect(`/user/groupInfo/${id}`)
     }catch(err){
         res.send(err)
     }
