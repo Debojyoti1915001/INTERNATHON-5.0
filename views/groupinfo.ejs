@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href="owl-carousel/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/group.css">
+    <link rel="stylesheet" href="/css/groupinfo.css">
     <title>Split Your Bill</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
         <div class="container"><a class="navbar-brand">SplitYourBill</a>
@@ -22,14 +24,14 @@
                     <li class="nav-item"><a class="nav-link" href="#news">Group</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
-                    <a class="btn logout my-2 my-sm-0 text-uppercase" href="/user/logout">LOGOUT</a>
+                <a class="btn logout my-2 my-sm-0 text-uppercase" href="/user/logout">LOGOUT</a>
             </div>
         </div>
     </nav>
     <div id="myModalLogin" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <div class="modal-header">		
+                <div class="modal-header">
                     <h4 class="modal-title">Enter Member</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
@@ -37,11 +39,13 @@
                     <form action="/user/groupInfo/<%=id%>" method="POST">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
-                            <input type="email" name="email"class="form-control" placeholder="Email" required="required">
-                        </div>		
+                            <input type="email" name="email" class="form-control" placeholder="Email"
+                                required="required">
+                        </div>
                         <div class="form-group">
                             <i class="fa fa-lock"></i>
-                            <input type="number"name="amount" class="form-control" placeholder="Amount" required="required">					
+                            <input type="number" name="amount" class="form-control" placeholder="Amount"
+                                required="required">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-block btn-lg" value="submit">
@@ -50,45 +54,70 @@
                 </div>
             </div>
         </div>
-    </div>   
-<div class="mastergroup col-12">    
-    <div class="container">
-        <div class="row">
-        <div class="main-group col-6">
-        <div class="allgroup">
-            <div class="container">
-              <h2> <%=groupInfo.name%></h2>
-       </div>
-            <%for(var ele of relation){%>
-                <h3 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
-                    padding:7px;
-                    border-radius: 20px;"><%=ele.user.name%>:Amount:<%=ele.amount%></a></h3>
-            <%}%>
-        <div  class="createButton" style="padding-bottom: 30px;">
-        <a href="#myModalLogin" data-toggle="modal" style=" 
-        margin-top: 5px; 
-        border:#000 solid 1px;
-        border-radius: 0;
-        color: #000;
-        font-size: 16px;
-        padding: 5px;
-        ">Add Member
-         <i class="fa fa-angle-right" aria-hidden="true" style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+    </div>
+    <div id="myModalEqual" class="modal fade">
+        <div class="modal-dialog modal-login">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Enter Member</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="/user/groupInfo/<%=id%>" method="POST">
+                        <div class="form-group">
+                            <i class="fa fa-user"></i>
+                            <input type="email" name="email" class="form-control" placeholder="Email"
+                                required="required">
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-primary btn-block btn-lg" value="submit">
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <div class="main-group col-6">
-        <div class="allgroup">
+    <div class="mastergroup">
         <div class="container">
-             <h2> <%=groupInfo.name%></h2>
-       </div>
-            <%for(var ele of relation){%>
-                <h3 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
-                    padding:7px;
-                    border-radius: 20px;"><%=ele.user.name%>:Amount:<%=ele.amount%></a></h3>
-            <%}%>
-    <div  class="createButton" style="padding-bottom: 30px;">
-        <a href="#myModalLogin" data-toggle="modal" style=" 
+            <div class="row">
+                <div class="main-group col-6" style=" margin-left: 0px;
+                margin-right: 0px;">
+                    <div class="allgroup">
+                        <h1>Manual Split</h1>
+                        <div class="container">
+                            <h2>
+                                <%=groupInfo.name%>
+                            </h2>
+                        </div>
+                        <div class="tbl-header">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Person</th>
+                                        <th>Bill</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tbl-content">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <%for(var ele of relation){%>
+                                        <tr>
+                                            <td>
+                                                <%=ele.user.name%>
+                                            </td>
+                                            <td>
+                                                <%=ele.amount%>
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="createButton" style="padding-bottom: 30px;">
+                            <a href="#myModalLogin" data-toggle="modal" style=" 
         margin-top: 5px; 
         border:#000 solid 1px;
         border-radius: 0;
@@ -96,32 +125,82 @@
         font-size: 16px;
         padding: 5px;
         ">Add Member
-         <i class="fa fa-angle-right" aria-hidden="true" style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
-   </div>
-    </div>
-</div>
-</div>  
-</div>
-</div>  
-    
-
-
-<footer class="container-fluid" id="gtco-footer">
-    <div class="container">
-        <div class="row">
-                    <div class="col-12">
-                        <p>&copy; 2021 INTERNATHON. All Rights Reserved. Made by 404 FORCES</a>.</p>
+                                <i class="fa fa-angle-right" aria-hidden="true"
+                                    style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+                        </div>
                     </div>
+                </div>
+                <div class="main-group col-6" style=" margin-left: 0px;
+                margin-right: 0px;">
+                    <div class="allgroup">
+                        <h1>Equal Split</h1>
+                        <div class="container">
+                            <h2>
+                                <%=groupInfo.name%>
+                            </h2>
+                        </div>
+                        <div class="tbl-header">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <thead>
+                                    <tr>
+                                        <th>Person</th>
+                                        <th>Bill</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                        <div class="tbl-content">
+                            <table cellpadding="0" cellspacing="0" border="0">
+                                <tbody>
+                                    <%for(var ele of relation){%>
+                                        <tr>
+                                            <td>
+                                                <%=ele.user.name%>
+                                            </td>
+                                            <td>
+                                                0
+                                            </td>
+                                        </tr>
+                                        <%}%>
+                                </tbody>
+                            </table>
+                        </div>
+                                <div class="createButton" style="padding-bottom: 30px;">
+                                    <a href="#myModalEqual" data-toggle="modal" style=" 
+        margin-top: 5px; 
+        border:#000 solid 1px;
+        border-radius: 0;
+        color: #000;
+        font-size: 16px;
+        padding: 5px;
+        ">Add Member
+                                        <i class="fa fa-angle-right" aria-hidden="true"
+                                            style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+                                </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-</footer>
 
-<script src="/js/jquery-3.3.1.slim.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
 
-<!-- owl carousel js-->
-<script src="owl-carousel/owl.carousel.min.js"></script>
-<script src="/js/main.js"></script>
+    <footer class="container-fluid" id="gtco-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>&copy; 2021 INTERNATHON. All Rights Reserved. Made by 404 FORCES</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- owl carousel js-->
+    <script src="owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
+
 </html>
