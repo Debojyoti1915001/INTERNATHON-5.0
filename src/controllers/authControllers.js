@@ -172,12 +172,15 @@ module.exports.logout_get = async (req, res) => {
 
 module.exports.groupCreate_get = async (req, res) => {
     const user = await req.user.populate('group').execPopulate()
-    res.render('./group')
+    const allGroups=user.group
+    res.render('./group',{
+        allGroups
+    })
 }
 module.exports.groupCreate_post = async (req, res) => {
     try{
         const {name}=req.body
-
+        console.log(name)
     const userId=[req.user._id]
     const newGroup=new Group({ name,user:userId})
     let saveGroup = await newGroup.save()
@@ -192,7 +195,7 @@ module.exports.groupCreate_post = async (req, res) => {
         
         // console.log(doc);
     });
-    res.send('save')
+    res.redirect('/user/group')
     }catch(err){
         res.send(err)
     }
@@ -200,9 +203,17 @@ module.exports.groupCreate_post = async (req, res) => {
 
 module.exports.groupInfo_get = async(req, res) => {
     //617c4cc6f9150521404c9d09
+    try{
+        const id=req.params.id
+    const groupInfo=await Group.findOne({_id:id})
+    const group = await groupInfo.populate('user').execPopulate()
+
+    res.send(group)
+    }catch(err){
+        res.send(err)
+    }
 
 }
 module.exports.userGroups_get = async(req, res) => {
-    const allGroups = await req.user.populate('group').execPopulate()
-    res.send(allGroups.group)
+    
 }

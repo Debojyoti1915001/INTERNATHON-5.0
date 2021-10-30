@@ -12,10 +12,15 @@
   padding-right: 50px;
   margin:20px;
 }
-.allgroup>.container>h4 a{
-       background: rgba(255, 255, 255, .7);
+.allgroup>h4 a{
                               padding:7px;
                               border-radius: 20px;
+                              color:rgb(79, 200, 216)
+}
+.allgroup h3 a{
+                           padding:7px;
+                           border-radius: 20px;
+                           color: rgb(79, 200, 216);
 }
 .allgroup h4 a:hover{
     cursor:pointer;
@@ -23,6 +28,13 @@
     background: rgba(230, 229, 229, 0.9);
     text-shadow: #2f3030;
     color: rgb(80, 176, 255);
+}
+.allgroup h3 a:hover{
+    cursor:pointer;
+    text-decoration: none;
+    background: rgba(151, 199, 206, 0.9);
+    text-shadow: #2f3030;
+    color: rgb(133, 236, 250);
 }
 .allgroup h4 a:hover,
 .allgroup h4 a:focus {
@@ -40,5 +52,5 @@
   }
 .createButton a:hover {
       text-decoration: none;
-      background: rgba(248, 248, 248, 0.6);
+      background: rgba(213, 219, 219, 0.6);
 }

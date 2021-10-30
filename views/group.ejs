@@ -30,11 +30,11 @@
         <div class="modal-dialog modal-login">
             <div class="modal-content">
                 <div class="modal-header">				
-                    <h4 class="modal-title">Member Login</h4>
+                    <h4 class="modal-title">Enter Group Name</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form action="/user/login" method="POST">
+                    <form action="/user/group" method="POST">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
                             <input type="text" name="name"class="form-control" placeholder="name" required="required">
@@ -44,37 +44,34 @@
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <a href="#">Forgot Password?</a>
-                </div>
             </div>
         </div>
+    </div>   
+<div class="main-group">
+    <div class="allgroup">
+       <div class="container">
+             <h2> Group Name</h2>
+       </div>
+        <h4><a href="">Groups I am In</a></h4>
+        <%for(var group of allGroups){%>
+            <h3 style="padding:10px"><a href="/user/groupInfo/<%=group._id%>" style="background: rgba(255, 255, 255, .7);
+                padding:7px;
+                border-radius: 20px;"><%=group.name%></a></h3>
+        <%}%>
+    <div  class="createButton" style="padding-bottom: 30px;">
+        <a href="#myModalLogin" data-toggle="modal" style=" 
+        margin-top: 5px; 
+        border:#000 solid 1px;
+        border-radius: 0;
+        color: #000;
+        font-size: 16px;
+        padding: 5px;
+        ">Create New Group
+         <i class="fa fa-angle-right" aria-hidden="true" style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+   </div>
     </div>
-    <div class="main-group">   
-          <div class="allgroup">
-            <div class="container">
-              <h2> Group Name</h2>
-            </div>
-        <h4 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
-                              padding:7px;
-                              border-radius: 20px;">School Friends</a></h4>
-           <h4 style="padding:10px"><a href="" style="background: rgba(255, 255, 255, .7);
-            padding:7px;
-            border-radius: 20px;"> Collegaues</a></h4>
-
-         <div  class="createButton" style="padding-bottom: 30px;">
-             <a href="#myModalLogin" data-toggle="modal" style=" 
-             margin-top: 5px; 
-             border:#000 solid 1px;
-             border-radius: 0;
-             color: #000;
-             font-size: 16px;
-             padding: 5px;
-             ">Create New Group
-              <i class="fa fa-angle-right" aria-hidden="true" style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
-        </div>
-        </div>
-    </div>
+</div>
+    
     
 
 
