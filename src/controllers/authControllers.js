@@ -1,5 +1,6 @@
 const User = require('../models/User')
-const Group = require('../models/group')
+const Group = require('../models/Group')
+const GU = require('../models/GU')
 const jwt = require('jsonwebtoken')
 const { signupMail } = require('../config/nodemailer')
 const path = require('path')
@@ -205,15 +206,30 @@ module.exports.groupInfo_get = async(req, res) => {
     //617c4cc6f9150521404c9d09
     try{
         const id=req.params.id
-    const groupInfo=await Group.findOne({_id:id})
-    const group = await groupInfo.populate('user').execPopulate()
-
-    res.send(group)
+        // const groupInfo=await Group.findOne({_id:id})
+        // const group = await groupInfo.populate('user').execPopulate()
+        const relation=await GU.find({group:id})
+        res.send(relation)
     }catch(err){
         res.send(err)
     }
-
 }
-module.exports.userGroups_get = async(req, res) => {
-    
+module.exports.groupInfo_post = async(req, res) => {
+    //617c4cc6f9150521404c9d09
+    try{
+        const id=req.params.id
+        const {email,amount}=req.body
+        const user=await User.findOne({email})
+        if(user.length===0){
+            res.send('errors')
+        }
+        const userId=user._id
+        const newRelation=new GU({user:userId,group:id,amount})
+        const relation=await newRelation.save()
+        const relationSend=await relation.populate('user').execPopulate()
+        res.send(relation)
+        // res.redirect(`/user/groupInfo/${id}`)
+    }catch(err){
+        res.send(err)
+    }
 }

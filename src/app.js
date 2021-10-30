@@ -85,9 +85,9 @@ app.listen(PORT, () => {
 //  databasedlt()
 
 
-//  const User= require('./models/Hospital')
+//  const User= require('./models/GU')
 // const databasedlt= async()=>{
-//    const user = await User.find({email:"debojyoti76@gmail.com"})
+//    const user = await User.find({})
 //    user.forEach(async(data)=>{
 //         await User.findByIdAndDelete(data._id)
 //    })
