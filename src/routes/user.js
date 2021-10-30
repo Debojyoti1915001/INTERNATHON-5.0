@@ -16,6 +16,6 @@ router.get('/group', requireAuth, authController.groupCreate_get)
 router.post('/group', requireAuth, authController.groupCreate_post)
 
 
-router.get('/groupInfo/:id', requireAuth, authController.groupInfo_get)
+router.get('/groupInfo', requireAuth, authController.groupInfo_get)
 router.post('/groupInfo/:id', requireAuth, authController.groupInfo_post)//group id
 module.exports = router

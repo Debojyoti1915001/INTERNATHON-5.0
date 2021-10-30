@@ -209,7 +209,11 @@ module.exports.groupInfo_get = async(req, res) => {
         // const groupInfo=await Group.findOne({_id:id})
         // const group = await groupInfo.populate('user').execPopulate()
         const relation=await GU.find({group:id})
-        res.send(relation)
+        //res.send(relation)
+        res.render('./groupinfo',
+        {
+            id
+        })
     }catch(err){
         res.send(err)
     }
