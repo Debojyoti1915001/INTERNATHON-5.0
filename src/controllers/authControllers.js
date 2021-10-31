@@ -9,6 +9,7 @@ const crypto = require('crypto')
 require('dotenv').config()
 const { nanoId } = require("nanoid")
 const mongoose=require('mongoose')
+const {Parser} = require('json2csv');
 
 const maxAge = 30 * 24 * 60 * 60
 
@@ -315,4 +316,81 @@ module.exports.remainder_get=async(req,res)=>{
 }
 module.exports.about=async(req,res)=>{
         res.send(`/user/about`)
+}
+
+module.exports.groupUnEqualCsv_get=async(req,res)=>{
+    try{
+        const id=req.params.id
+        const groupInfo=await Group.findOne({_id:id})
+        // const group = await groupInfo.populate('user').execPopulate()
+        const rel=await GU.find({group:id})
+        //res.send(relation)
+        // console.log(rel)
+        var relation=[]
+        for(var i=0;i<rel.length;i++){
+            var r=await rel[i].populate('user').execPopulate()
+            relation.push({'Name':r.user.name,'Amount':`${r.amount}`})
+        }
+        const fields = [
+            {
+              label: 'Name',
+              value: 'Name'
+            },
+            {
+              label: 'Amount',
+              value: 'Amount'
+            }
+          ];
+          console.log(relation)
+          
+        const fileName=`${groupInfo.name}.csv`
+        const json2csv = new Parser({ fields });
+        const csv = json2csv.parse(relation);
+        res.header('Content-Type', 'text/csv');
+        res.attachment(fileName);
+        // res.send(csv);
+        console.log(csv)
+        return res.send(csv);
+        // res.redirect(`/user/groupInfo/${id}`)
+    }catch(err){
+        res.send(err)
+    }
+}
+module.exports.groupEqualCsv_get=async(req,res)=>{
+    try{
+        const id=req.params.id
+        const groupInfo=await Group.findOne({_id:id})
+        // const group = await groupInfo.populate('user').execPopulate()
+        const rel=await GU.find({group:id})
+        //res.send(relation)
+        // console.log(rel)
+        var relation=[]
+        for(var i=0;i<rel.length;i++){
+            var r=await rel[i].populate('user').execPopulate()
+            relation.push({'Name':r.user.name,'Amount':`${groupInfo.amount}`})
+        }
+        const fields = [
+            {
+              label: 'Name',
+              value: 'Name'
+            },
+            {
+              label: 'Amount',
+              value: 'Amount'
+            }
+          ];
+          console.log(relation)
+          
+        const fileName=`${groupInfo.name}.csv`
+        const json2csv = new Parser({ fields });
+        const csv = json2csv.parse(relation);
+        res.header('Content-Type', 'text/csv');
+        res.attachment(fileName);
+        // res.send(csv);
+        console.log(csv)
+        return res.send(csv);
+        // res.redirect(`/user/groupInfo/${id}`)
+    }catch(err){
+        res.send(err)
+    }
 }

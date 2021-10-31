@@ -21,7 +21,10 @@ router.post('/about', authController.about)
 router.post('/groupInfoEqual/:id', requireAuth, authController.groupInfoEqual_post)
 router.get('/groupInfo/:id', requireAuth, authController.groupInfo_get)
 router.post('/groupInfo/:id', requireAuth, authController.groupInfo_post)//group id
-//edit
+//csv
+router.get('/groupUnEqualCsv/:id', requireAuth, authController.groupUnEqualCsv_get)
+router.get('/groupEqualCsv/:id', requireAuth, authController.groupEqualCsv_get)
+
 //remainder
 router.get('/reminder/:amount/:email/:id', requireAuth, authController.remainder_get)
 
