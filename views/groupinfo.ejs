@@ -147,7 +147,6 @@
                                         </tr>
                                         <%}%>
                                 </tbody>
-                                <a href="/user/groupUnEqualCsv/<%=groupInfo._id%>">Download Csv</a>
                             </table>
                         </div>
 
@@ -162,6 +161,16 @@
         ">Add Member
                                 <i class="fa fa-angle-right" aria-hidden="true"
                                     style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+                                <a href="/user/groupUnEqualCsv/<%=groupInfo._id%>" style=" 
+                                    margin-top: 5px; 
+                                    border:#000 solid 1px;
+                                    border-radius: 0;
+                                    color: #000;
+                                    font-size: 16px;
+                                    padding: 5px;
+                                    ">Download Csv</a>
+
+                                    
                         </div>
                     </div>
                 </div>
@@ -189,7 +198,7 @@
                         <div class="tbl-content">
                             <table cellpadding="0" cellspacing="0" border="0">
                                 <tbody>
-                                    <a href="/user/groupEqualCsv/<%=groupInfo._id%>">Download Csv</a>
+                                  
                                     <%for(var ele of relation){%>
                                         <tr>
                                             <td>
@@ -217,6 +226,16 @@
         ">Add Member
                                         <i class="fa fa-angle-right" aria-hidden="true"
                                             style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+
+
+                                              <a href="/user/groupEqualCsv/<%=groupInfo._id%>" style=" margin-top: 5px; 
+                                                border:#000 solid 1px;
+                                                border-radius: 0;
+                                                color: #000;
+                                                font-size: 16px;
+                                                padding: 5px;
+                                                "">Download Csv</a>
+                                            
                                 </div>
                                 <form action="/user/groupInfoEqual/<%=id%>" method="POST">
                                     <div class="form-group">
