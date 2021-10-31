@@ -2,9 +2,9 @@ const User = require('../models/User')
 const Group = require('../models/Group')
 const GU = require('../models/GU')
 const jwt = require('jsonwebtoken')
-const { signupMail } = require('../config/nodemailer')
+const { signupMail,reminderMail } = require('../config/nodemailer')
 const path = require('path')
-const { handleErrors,generateShortId } = require('../utilities/Utilities'); 
+const { handleErrors } = require('../utilities/Utilities'); 
 const crypto = require('crypto')
 require('dotenv').config()
 const { nanoId } = require("nanoid")
@@ -41,7 +41,6 @@ module.exports.signup_post = async (req, res) => {
             )
             return res.redirect('/')
         }
-        // console.log("Short ID generated is: ", short_id)
         const user = new User({ email, name, password})
         let saveUser = await user.save()
         // console.log(saveUser);
@@ -234,7 +233,9 @@ module.exports.groupInfo_post = async(req, res) => {
         const {email,amount}=req.body
         console.log(email,amount)
         // console.log(amount)
-       
+       if(email===undefined){
+        res.redirect(`/user/groupInfo/${id}`)
+       }
         const user=await User.findOne({email})
         const group=await Group.findOne({_id:id})
         const users=group.user
@@ -292,6 +293,22 @@ module.exports.groupInfoEqual_post = async(req, res) =>{
         // console.log(doc);
     });
      res.redirect(`/user/groupInfo/${id}`) 
+    }catch(err){
+        res.send(err)
+    }
+}
+
+module.exports.remainder_get=async(req,res)=>{
+    try{
+        const amount=req.params.amount
+        const email=req.params.email
+        const id=req.params.id
+        const group=await Group.findOne({_id:id})
+        const user=req.user
+        reminderMail(group,email,amount,req.hostname,req.protocol)
+        console.log(amount,email,id)
+
+        res.redirect(`/user/groupInfo/${id}`)
     }catch(err){
         res.send(err)
     }

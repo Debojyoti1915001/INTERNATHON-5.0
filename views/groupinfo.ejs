@@ -135,10 +135,13 @@
                                                 <%=ele.amount%>
                                             </td>
                                             <td>
-                                                <a href="">Remind</a>
+
+                                                <a href="/user/reminder/<%=ele.amount%>/<%=ele.user.email%>/<%=groupInfo._id%>">Remind</a>
+
                                             </td>
                                             <td>
                                                 <a href="#myModalEdit" data-toggle="modal">Edit</a>
+
                                             </td>
                                         </tr>
                                         <%}%>
