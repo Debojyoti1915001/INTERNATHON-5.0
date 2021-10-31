@@ -1,16 +1,17 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
 .main-group{
-  margin-left: 50px;
+  margin-left: 0px;
   margin-right: 50px;
 }
 .allgroup {
-    border: #000 solid 1px;
-  border-radius: 5px;
   color: #2f3030;
   font-size: 22px;
   text-align: center;
   padding-top: 5px;
-  
+  font-weight: 300;
+  font-family: 'Roboto', sans-serif;
   margin:20px;
+  text-align: left;
 }
 .allgroup>h4 a{
                               padding:7px;
@@ -22,28 +23,30 @@
                            border-radius: 20px;
                            color: rgb(79, 200, 216);
 }
-.allgroup h4 a:hover{
+.allgroup h3{
     cursor:pointer;
     text-decoration: none;
-    background: rgba(230, 229, 229, 0.9);
+    background: rgba(230, 229, 229, 1.0);
     text-shadow: #2f3030;
-    color: rgb(80, 176, 255);
+    color: rgb(158, 185, 207);
 }
-.allgroup h3 a:hover{
+.allgroup h3:hover{
     cursor:pointer;
-    text-decoration: none;
-    background: rgba(151, 199, 206, 0.9);
+    text-decoration: none !important;
+    background:#E9F3FD;
     text-shadow: #2f3030;
-    color: rgb(133, 236, 250);
+    color: rgb(102, 165, 173);
 }
-.allgroup h4 a:hover,
-.allgroup h4 a:focus {
+.allgroup h3 a:hover,
+.allgroup h3 a:focus {
   box-shadow: inset 0 0 0 2em var(--hover);
+  text-decoration: none !important;
+
 }
 
 
-.allgroup h4 a:hover, 
-.allgroup h4 a:focus {
+.allgroup h3 a:hover, 
+.allgroup h3 a:focus {
   animation: pulse 1s;
   box-shadow: 0 0 0 2em rgba(#fff,0);
 }

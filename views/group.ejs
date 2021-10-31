@@ -1,5 +1,6 @@
 <!doctype html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -7,9 +8,10 @@
     <link rel="stylesheet" href="owl-carousel/assets/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/groupinfo.css">
+    <link rel="stylesheet" href="/css/group.css">
     <title>Split Your Bill</title>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light bg-transparent" id="gtco-main-nav">
         <div class="container"><a class="navbar-brand">SplitYourBill</a>
@@ -22,14 +24,14 @@
                     <li class="nav-item"><a class="nav-link" href="#news">Group</a></li>
                     <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
                 </ul>
-                    <a class="btn logout my-2 my-sm-0 text-uppercase" href="/user/logout">LOGOUT</a>
+                <a class="btn logout my-2 my-sm-0 text-uppercase" href="/user/logout">LOGOUT</a>
             </div>
         </div>
     </nav>
     <div id="myModalLogin" class="modal fade">
         <div class="modal-dialog modal-login">
             <div class="modal-content">
-                <div class="modal-header">				
+                <div class="modal-header">
                     <h4 class="modal-title">Enter Group Name</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                 </div>
@@ -37,7 +39,7 @@
                     <form action="/user/group" method="POST">
                         <div class="form-group">
                             <i class="fa fa-user"></i>
-                            <input type="text" name="name"class="form-control" placeholder="name" required="required">
+                            <input type="text" name="name" class="form-control" placeholder="name" required="required">
                         </div>
                         <div class="form-group">
                             <input type="submit" class="btn btn-primary btn-block btn-lg" value="submit">
@@ -46,20 +48,32 @@
                 </div>
             </div>
         </div>
-    </div>   
-<div class="main-group">
-    <div class="allgroup">
-       <div class="container">
-             <h2> Group Name</h2>
-       </div>
-        <h4><a href="">Groups I am In</a></h4>
-        <%for(var group of allGroups){%>
-            <h3 style="padding:10px"><a href="/user/groupInfo/<%=group._id%>" style="background: rgba(255, 255, 255, .7);
+    </div>
+    <div class="main-group" >
+        <div class="container" style=" border: #000 solid 1px;
+            border-radius: 5px; margin-left: 150px; margin-right: 150px;" >
+            <div class="row">
+                <div class="col-4">
+                    <div class="allgroup" style="border: none;">
+                        <div class="contain"
+                            style=" font-weight: 150; font-size:22; padding-bottom: 10px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                            <h2> Group Name</h2>
+                        </div>
+                        <%for(var group of allGroups){%>
+                            <h3 style="padding:10px" style="background: rgba(255, 255, 255, .5);"><a href="/user/groupInfo/<%=group._id%>" style=" width: 100%;  font-weight: 100; font-size:14; 
                 padding:7px;
-                border-radius: 20px;"><%=group.name%></a></h3>
-        <%}%>
-    <div  class="createButton" style="padding-bottom: 30px;">
-        <a href="#myModalLogin" data-toggle="modal" style=" 
+                border-radius: 20px;">
+                                    <%=group.name%>
+                                </a></h3>
+                            <%}%>
+                    </div>
+                    </div>
+                    <div class="graphic col-8">
+                        <img src="/images/527.png" class="img-fluid" style="margin-left: 50px;">
+                    </div>
+                </div>
+            <div class="createButton" style="padding-bottom: 30px; margin-left: 20px;">
+                <a href="#myModalLogin" data-toggle="modal" style=" 
         margin-top: 5px; 
         border:#000 solid 1px;
         border-radius: 0;
@@ -67,30 +81,33 @@
         font-size: 16px;
         padding: 5px;
         ">Create New Group
-         <i class="fa fa-angle-right" aria-hidden="true" style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
-   </div>
-    </div>
-</div>
-    
-    
-
-
-<footer class="container-fluid" id="gtco-footer">
-    <div class="container">
-        <div class="row">
-                    <div class="col-12">
-                        <p>&copy; 2021 INTERNATHON. All Rights Reserved. Made by 404 FORCES</a>.</p>
-                    </div>
+                    <i class="fa fa-angle-right" aria-hidden="true"
+                        style="background:white; border-radius: 50%; margin:5px; padding:5px;"></i></a>
+            </div>
+            </div>
         </div>
     </div>
-</footer>
 
-<script src="/js/jquery-3.3.1.slim.min.js"></script>
-<script src="/js/popper.min.js"></script>
-<script src="/js/bootstrap.min.js"></script>
 
-<!-- owl carousel js-->
-<script src="owl-carousel/owl.carousel.min.js"></script>
-<script src="/js/main.js"></script>
+
+
+    <footer class="container-fluid sticky-bottom" id="gtco-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <p>&copy; 2021 INTERNATHON. All Rights Reserved. Made by 404 FORCES</a>.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/jquery-3.3.1.slim.min.js"></script>
+    <script src="/js/popper.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+
+    <!-- owl carousel js-->
+    <script src="owl-carousel/owl.carousel.min.js"></script>
+    <script src="/js/main.js"></script>
 </body>
+
 </html>
