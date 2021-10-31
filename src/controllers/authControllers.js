@@ -313,3 +313,6 @@ module.exports.remainder_get=async(req,res)=>{
         res.send(err)
     }
 }
+module.exports.about=async(req,res)=>{
+        res.send(`/user/about`)
+}

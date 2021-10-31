@@ -15,6 +15,8 @@ router.get('/logout', requireAuth, authController.logout_get)
 
 router.get('/group', requireAuth, authController.groupCreate_get)
 router.post('/group', requireAuth, authController.groupCreate_post)
+router.post('/about', authController.about)
+
 
 router.post('/groupInfoEqual/:id', requireAuth, authController.groupInfoEqual_post)
 router.get('/groupInfo/:id', requireAuth, authController.groupInfo_get)
